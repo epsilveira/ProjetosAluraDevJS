@@ -5,6 +5,7 @@ Projetos criados durante a Imersão Alura Dev (JavaScript).
 Um simples conversor de dólar para real, e vice-versa.
 ## calculadora
 Calculadora de expressões simples, utilizando prompt como entrada.
-
 ## mentalista
 Jogo para descobrir número secreto, gerado randomicamente, através de tentativa e erro.
+## topseries
+Exibe capas de séries com URL do IMDB.
