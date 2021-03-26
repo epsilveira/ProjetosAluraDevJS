@@ -19,31 +19,39 @@ function adicionarCapa() {
 function tratamentoIMDB(jsonIMDB) {
   // console.log("Imagem = " + jsonIMDB.d[0].i[0]);
   // console.log("Nome = " + jsonIMDB.d[0].l);
-  // console.log("Duração = " + jsonIMDB.d[0].vt);
   // console.log("Ano = " + jsonIMDB.d[0].y);
   // console.log("ID = " + jsonIMDB.d[0].id);
   // console.log("Estrelando = " + jsonIMDB.d[0].s);
   const urlImagem = jsonIMDB.d[0].i[0];
   const nomeObra = jsonIMDB.d[0].l;
   const idObra = jsonIMDB.d[0].id;
+  const ano = jsonIMDB.d[0].y;
 
   if (urlImagem.endsWith(".jpg")) {
-    listarCapasNaTela(urlImagem, nomeObra, idObra);
+    listarCapasNaTela(urlImagem, nomeObra, idObra, ano);
   } else {
     alert("URL de imagem inválida");
   }
 }
 
-function listarCapasNaTela(urlImagemCapa, nomeObra, idObra) {
+function listarCapasNaTela(urlImagemCapa, nomeObra, idObra, ano) {
   const listaCapas = document.querySelector("#listaCapas");
   const elementoCapa =
-    '<a target=_blank alt="' +
+    '<div id="capa"><a target=_blank alt="' +
+    nomeObra +
+    '" href="' +
+    urlImagemCapa +
+    '"><img width="182" height="268" src="' +
+    urlImagemCapa +
+    '"></a><p><b><a target=_blank alt="' +
     nomeObra +
     '" href="https://www.imdb.com/title/' +
     idObra +
-    '/"><img width="182" height="268" src="' +
-    urlImagemCapa +
-    '"></a>';
+    '/">' +
+    nomeObra +
+    "</a></b></p><p>" +
+    ano +
+    "</p></div>";
   listaCapas.innerHTML = listaCapas.innerHTML + elementoCapa;
 }
 

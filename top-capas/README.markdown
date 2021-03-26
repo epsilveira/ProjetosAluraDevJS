@@ -1,8 +1,5 @@
 # Top Capas
 
-Criado durante a Imersão Alura Dev (JavaScript).
+A Pen created on CodePen.io. Original URL: [https://codepen.io/epsilveira/pen/ExZPqPP](https://codepen.io/epsilveira/pen/ExZPqPP).
 
-URL do Codepen: [https://codepen.io/epsilveira/pen/ExZPqPP](https://codepen.io/epsilveira/pen/ExZPqPP).
 
-Pasta dist contém os arquivos para executar no seu próprio ambiente.
-Pasta src contém os arquivos para utilizar no Codepen.
