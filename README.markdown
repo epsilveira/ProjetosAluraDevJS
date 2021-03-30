@@ -13,5 +13,5 @@ Exibe capas de séries com URL do IMDB.
 Exibe capas de obras (filmes ou séries) hospedadas no IMDB, utilizando a api dele. Não há tratamento de erros ou testes. Apenas realiza a consulta e utiliza as informações. Utilizada a api [https://api.allorigins.win/](https://api.allorigins.win/) para contornar o bloqueio do CORS.
 ## tabela-de-classificacao
 Tabela de classificação simples, com inserção de competidores e adição de vitórias, empates e derrotas.
-## super-trungo-livros-biblia
+## super-trunfo-livros-biblia
 Jogo com a dinâmica do super trunfo com atributos de livros da Bíblia. O objetivo é chegar a 66 pontos ("obter" as 66 cartas) e não chegar a 0 pontos ("perder" todas as cartas). Não há separação de cartas, a cada rodada a carta é recebida randomicamente da pilha contendo todas as cartas.
