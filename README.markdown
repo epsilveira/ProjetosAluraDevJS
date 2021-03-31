@@ -15,3 +15,5 @@ Exibe capas de obras (filmes ou séries) hospedadas no IMDB, utilizando a api de
 Tabela de classificação simples, com inserção de competidores e adição de vitórias, empates e derrotas.
 ## super-trunfo-livros-biblia
 Jogo com a dinâmica do super trunfo com atributos de livros da Bíblia. O objetivo é chegar a 66 pontos ("obter" as 66 cartas) e não chegar a 0 pontos ("perder" todas as cartas). Não há separação de cartas, a cada rodada a carta é recebida randomicamente da pilha contendo todas as cartas.
+## super-trunfo-livros-biblia-v2
+Super trunfo atualizado com cartas sendo mostradas com imagens.
