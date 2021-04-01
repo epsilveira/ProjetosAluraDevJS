@@ -21,12 +21,10 @@
     <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-super-trunfo.png" class="page-logo" alt="">
     <h1 class="page-title">Super Trunfo Livros Da Bíblia</h1>
     <p class="descricao">Atenção: os anos das cartas são aproximados, não exatos. Anos negativos são de Antes de Cristo.</br>Livro e Ano vence o menor, Capítulos e Versículos vence o maior. Divirta-se!</p>
-    <button onclick="novaRodada()" id="btnNovaRodada">Nova rodada</button>
-
-    <div class="pontuacao" id="pontuacao"></div>
 
     <form id="form">
       <h2>Escolha o seu atributo</h2>
+      <div class="pontuacao" id="pontuacao"></div>
       <div class="wrapper">
         <div>
           <div id="carta-jogador">
@@ -40,6 +38,7 @@
       </div>
       <button class="button-jogar" type="button" id="btnJogar" onclick="jogar()" disabled="false">Jogar</button>
       <!--       <div id="resultado"></div> -->
+      <button onclick="novaRodada()" id="btnNovaRodada">Próxima rodada</button>
     </form>
   </div>
 </body>

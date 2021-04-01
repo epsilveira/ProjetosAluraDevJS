@@ -1,5 +1,5 @@
 let cartas = [];
-let pontuacaoMax, cartaPC, cartaJogador, pontuacao;
+let cartaPC, cartaJogador, pontuacaoJogador, pontuacaoPC;
 let cartasJogador = [];
 let cartasPC = [];
 let cartasEmpate = [];
@@ -7,9 +7,10 @@ let imagemPadrao =
   "https://grupoahora.net.br/wp-content/uploads/2020/08/gincana-do-vale.jpg";
 let fim = false;
 
-function construtorCarta(nome, livro, cap, vers, ano, imagem) {
+function construtorCarta(nome, descricao, livro, cap, vers, ano, imagem) {
   return {
     nome: nome,
+    descricao: descricao,
     imagem: imagem,
     atributos: {
       livro: livro,
@@ -24,6 +25,7 @@ function inicializa() {
   cartas = [
     construtorCarta(
       "Gênesis",
+      "Pentateuco",
       1,
       50,
       1533,
@@ -32,6 +34,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Êxodo",
+      "Pentateuco",
       2,
       40,
       1213,
@@ -40,6 +43,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Levítico",
+      "Pentateuco",
       3,
       27,
       859,
@@ -48,6 +52,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Números",
+      "Pentateuco",
       4,
       36,
       1288,
@@ -56,6 +61,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Deuteronômio",
+      "Pentateuco",
       5,
       34,
       959,
@@ -64,6 +70,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Josué",
+      "Livros Históricos",
       6,
       24,
       658,
@@ -72,6 +79,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Juízes",
+      "Livros Históricos",
       7,
       21,
       619,
@@ -80,6 +88,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Rute",
+      "Livros Históricos",
       8,
       4,
       85,
@@ -88,6 +97,7 @@ function inicializa() {
     ),
     construtorCarta(
       "1 Samuel",
+      "Livros Históricos",
       9,
       31,
       811,
@@ -96,6 +106,7 @@ function inicializa() {
     ),
     construtorCarta(
       "2 Samuel",
+      "Livros Históricos",
       10,
       24,
       695,
@@ -104,6 +115,7 @@ function inicializa() {
     ),
     construtorCarta(
       "1 Reis",
+      "Livros Históricos",
       11,
       22,
       817,
@@ -112,6 +124,7 @@ function inicializa() {
     ),
     construtorCarta(
       "2 Reis",
+      "Livros Históricos",
       12,
       25,
       719,
@@ -120,6 +133,7 @@ function inicializa() {
     ),
     construtorCarta(
       "1 Crônicas",
+      "Livros Históricos",
       13,
       29,
       942,
@@ -128,6 +142,7 @@ function inicializa() {
     ),
     construtorCarta(
       "2 Crônicas",
+      "Livros Históricos",
       14,
       36,
       822,
@@ -136,6 +151,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Esdras",
+      "Livros Históricos",
       15,
       10,
       280,
@@ -144,6 +160,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Neemias",
+      "Livros Históricos",
       16,
       13,
       406,
@@ -152,6 +169,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Ester",
+      "Livros Históricos",
       17,
       10,
       167,
@@ -160,6 +178,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Jó",
+      "Poéticos E De Sabedoria",
       18,
       42,
       1070,
@@ -168,6 +187,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Salmos",
+      "Poéticos E De Sabedoria",
       19,
       150,
       2461,
@@ -176,6 +196,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Provérbios",
+      "Poéticos E De Sabedoria",
       20,
       31,
       915,
@@ -184,6 +205,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Eclesiastes",
+      "Poéticos E De Sabedoria",
       21,
       12,
       222,
@@ -192,6 +214,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Cantares",
+      "Poéticos E De Sabedoria",
       22,
       8,
       117,
@@ -200,6 +223,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Isaías",
+      "Profetas (Maiores)",
       23,
       66,
       1292,
@@ -208,6 +232,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Jeremias",
+      "Profetas (Maiores)",
       24,
       52,
       1364,
@@ -216,6 +241,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Lamentações",
+      "Profetas (Maiores)",
       25,
       5,
       154,
@@ -224,6 +250,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Ezequiel",
+      "Profetas (Maiores)",
       26,
       48,
       1273,
@@ -232,6 +259,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Daniel",
+      "Profetas (Maiores)",
       27,
       12,
       357,
@@ -240,6 +268,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Oséias",
+      "Profetas (Menores)",
       28,
       14,
       197,
@@ -248,6 +277,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Joel",
+      "Profetas (Menores)",
       29,
       3,
       73,
@@ -256,6 +286,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Amós",
+      "Profetas (Menores)",
       30,
       9,
       146,
@@ -264,6 +295,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Obadias",
+      "Profetas (Menores)",
       31,
       1,
       21,
@@ -272,6 +304,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Jonas",
+      "Profetas (Menores)",
       32,
       4,
       48,
@@ -280,6 +313,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Miquéias",
+      "Profetas (Menores)",
       33,
       7,
       105,
@@ -288,6 +322,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Naum",
+      "Profetas (Menores)",
       34,
       3,
       47,
@@ -296,6 +331,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Habacuque",
+      "Profetas (Menores)",
       35,
       3,
       56,
@@ -304,6 +340,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Sofonias",
+      "Profetas (Menores)",
       36,
       3,
       53,
@@ -312,6 +349,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Ageu",
+      "Profetas (Menores)",
       37,
       2,
       38,
@@ -320,6 +358,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Zacarias",
+      "Profetas (Menores)",
       38,
       14,
       211,
@@ -328,6 +367,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Malaquias",
+      "Profetas (Menores)",
       39,
       4,
       55,
@@ -336,6 +376,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Mateus",
+      "Evangelhos",
       1,
       28,
       1071,
@@ -344,6 +385,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Marcos",
+      "Evangelhos",
       2,
       16,
       678,
@@ -352,6 +394,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Lucas",
+      "Evangelhos",
       3,
       24,
       1151,
@@ -360,6 +403,7 @@ function inicializa() {
     ),
     construtorCarta(
       "João",
+      "Evangelhos",
       4,
       21,
       879,
@@ -368,6 +412,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Atos",
+      "Livros Históricos",
       5,
       28,
       1007,
@@ -376,6 +421,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Romanos",
+      "Cartas Paulinas",
       6,
       16,
       433,
@@ -384,6 +430,7 @@ function inicializa() {
     ),
     construtorCarta(
       "1 Coríntios",
+      "Cartas Paulinas",
       7,
       16,
       437,
@@ -392,6 +439,7 @@ function inicializa() {
     ),
     construtorCarta(
       "2 Coríntios",
+      "Cartas Paulinas",
       8,
       13,
       256,
@@ -400,6 +448,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Gálatas",
+      "Cartas Paulinas",
       9,
       6,
       149,
@@ -408,6 +457,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Efésios",
+      "Cartas Paulinas",
       10,
       6,
       155,
@@ -416,6 +466,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Filipenses",
+      "Cartas Paulinas",
       11,
       4,
       104,
@@ -424,6 +475,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Colossenses",
+      "Cartas Paulinas",
       12,
       4,
       95,
@@ -432,6 +484,7 @@ function inicializa() {
     ),
     construtorCarta(
       "1 Tessalonicenses",
+      "Cartas Paulinas",
       13,
       5,
       89,
@@ -440,6 +493,7 @@ function inicializa() {
     ),
     construtorCarta(
       "2 Tessalonicenses",
+      "Cartas Paulinas",
       14,
       3,
       47,
@@ -448,6 +502,7 @@ function inicializa() {
     ),
     construtorCarta(
       "1 Timóteo",
+      "Cartas Paulinas",
       15,
       6,
       113,
@@ -456,6 +511,7 @@ function inicializa() {
     ),
     construtorCarta(
       "2 Timóteo",
+      "Cartas Paulinas",
       16,
       4,
       83,
@@ -464,6 +520,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Tito",
+      "Cartas Paulinas",
       17,
       3,
       46,
@@ -472,6 +529,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Filemon",
+      "Cartas Paulinas",
       18,
       1,
       25,
@@ -480,6 +538,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Hebreus",
+      "Cartas Gerais",
       19,
       13,
       303,
@@ -488,6 +547,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Tiago",
+      "Cartas Gerais",
       20,
       5,
       108,
@@ -496,6 +556,7 @@ function inicializa() {
     ),
     construtorCarta(
       "1 Pedro",
+      "Cartas Gerais",
       21,
       5,
       105,
@@ -504,6 +565,7 @@ function inicializa() {
     ),
     construtorCarta(
       "2 Pedro",
+      "Cartas Gerais",
       22,
       3,
       61,
@@ -512,6 +574,7 @@ function inicializa() {
     ),
     construtorCarta(
       "1 João",
+      "Cartas Gerais",
       23,
       5,
       105,
@@ -520,6 +583,7 @@ function inicializa() {
     ),
     construtorCarta(
       "2 João",
+      "Cartas Gerais",
       24,
       1,
       13,
@@ -528,6 +592,7 @@ function inicializa() {
     ),
     construtorCarta(
       "3 João",
+      "Cartas Gerais",
       25,
       1,
       15,
@@ -536,6 +601,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Judas",
+      "Cartas Gerais",
       26,
       1,
       25,
@@ -544,6 +610,7 @@ function inicializa() {
     ),
     construtorCarta(
       "Apocalipse",
+      "Profético/Revelação",
       27,
       22,
       404,
@@ -552,81 +619,30 @@ function inicializa() {
     )
   ];
 
-  // cartas = [
-  //   construtorCarta(
-  //     "Gênesis",
-  //     1,
-  //     50,
-  //     1533,
-  //     -1513,
-  //     "http://mensagemrevelada.org.br/wp-content/uploads/2020/04/PRINCIPIO-CRIACAO-810x456.jpg"
-  //   ),
-  //   construtorCarta(
-  //     "Êxodo",
-  //     2,
-  //     40,
-  //     1213,
-  //     -1512,
-  //     "https://aventurasnahistoria.uol.com.br/media/_versions/exodus_1651662_capa_widelg.jpeg"
-  //   ),
-  //   construtorCarta(
-  //     "Levítico",
-  //     3,
-  //     27,
-  //     859,
-  //     -1512,
-  //     "https://i0.wp.com/voltemosaoevangelho.com/blog/wp-content/uploads/2020/02/4-razo%CC%83es-pelas-quais-voce%CC%82-deve-pregar-E%CC%82xodo-1.jpg?fit=856%2C394&ssl=1"
-  //   ),
-  //   construtorCarta(
-  //     "Números",
-  //     4,
-  //     36,
-  //     1288,
-  //     -1473,
-  //     "https://ebd-biblia.webnode.com/_files/system_preview_detail_200002283-1a7ea1b785/numeros-biblia.jpg"
-  //   ),
-  //   construtorCarta(
-  //     "Deuteronômio",
-  //     5,
-  //     34,
-  //     959,
-  //     -1473,
-  //     "https://cdn.mensagenscomamor.com/content/images/p000000516.jpg?v=0&w=696&h=392&c=1"
-  //   ),
-  //   construtorCarta(
-  //     "Josué",
-  //     6,
-  //     24,
-  //     658,
-  //     -1450,
-  //     "https://i.pinimg.com/originals/71/08/77/71087719e37e62e7ff2a0665ab465201.jpg"
-  //   )
-  // ];
-  pontuacaoMax = cartas.length;
   cartaPC, cartaJogador;
   cartasJogador = [];
   cartasPC = [];
   cartasEmpate = [];
-  pontuacao = parseInt(pontuacaoMax / 2);
   imagemPadrao =
     "https://grupoahora.net.br/wp-content/uploads/2020/08/gincana-do-vale.jpg";
   fim = false;
 
   sortearCartas();
+  calculaPontuacao();
 }
 
 function exibirPontuacao() {
   document.getElementById("pontuacao").innerHTML =
-    "<h2>Cartas restantes: " + pontuacao + "</h2>";
+    "<h3>Suas Cartas " +
+    pontuacaoJogador +
+    " / " +
+    pontuacaoPC +
+    " Cartas Computador</h3>";
 }
 
-function calculaPontuacao(vencedor) {
-  // if (vencedor === "jogador") {
-  //   pontuacao++;
-  // } else if (vencedor === "pc") {
-  //   pontuacao--;
-  // }
-  pontuacao = cartasJogador.length;
+function calculaPontuacao() {
+  pontuacaoJogador = cartasJogador.length;
+  pontuacaoPC = cartasPC.length;
 }
 
 function sortearCartas() {
@@ -673,6 +689,7 @@ function exibirCartaJogador(atributoSelecionado = "", status = "") {
     '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style=" width: inherit; height: inherit; position: absolute;">';
   divCartaJogador.style.backgroundImage = `url(${cartaJogador.imagem})`;
   let nome = `<p class="carta-subtitle">${cartaJogador.nome}</p>`;
+  let descricao = `<p class="carta-description">${cartaJogador.descricao}</p>`;
   let opcoesTexto = "";
 
   if (atributoSelecionado === "") {
@@ -680,12 +697,16 @@ function exibirCartaJogador(atributoSelecionado = "", status = "") {
       opcoesTexto +=
         "<input type='radio' name='atributo' value='" +
         atributo +
-        "'>" +
+        "' id='" +
+        atributo +
+        "Opcao'><label for='" +
+        atributo +
+        "Opcao'><p>" +
         atributo.charAt(0).toUpperCase() +
         atributo.slice(1) +
         ": " +
         cartaJogador.atributos[atributo] +
-        "<br>";
+        "</p></label>";
     }
   } else {
     for (var atributo in cartaJogador.atributos) {
@@ -716,7 +737,8 @@ function exibirCartaJogador(atributoSelecionado = "", status = "") {
   }
   let html = '<div id="opcoes" class="carta-status">';
 
-  divCartaJogador.innerHTML = moldura + nome + html + opcoesTexto + "</div>";
+  divCartaJogador.innerHTML =
+    moldura + nome + descricao + html + opcoesTexto + "</div>";
 }
 
 function exibirCartaPC(atributoSelecionado = "", status = "") {
@@ -725,6 +747,7 @@ function exibirCartaPC(atributoSelecionado = "", status = "") {
     '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style="width: inherit; height: inherit; position: absolute;">';
   divCartaPC.style.backgroundImage = `url(${cartaPC.imagem})`;
   let nome = `<p class="carta-subtitle">${cartaPC.nome}</p>`;
+  let descricao = `<p class="carta-description">${cartaPC.descricao}</p>`;
   let opcoesTexto = "";
 
   for (var atributo in cartaPC.atributos) {
@@ -755,7 +778,8 @@ function exibirCartaPC(atributoSelecionado = "", status = "") {
 
   let html = '<div id="opcoes" class="carta-status">';
 
-  divCartaPC.innerHTML = moldura + nome + html + opcoesTexto + "</div>";
+  divCartaPC.innerHTML =
+    moldura + nome + descricao + html + opcoesTexto + "</div>";
 }
 
 function obterAtributoSelecionado() {
@@ -768,7 +792,6 @@ function obterAtributoSelecionado() {
 }
 
 function jogar() {
-  // let divResultado = document.getElementById("resultado");
   const atributoSelecionado = obterAtributoSelecionado();
   let vencedor;
 
@@ -781,40 +804,38 @@ function jogar() {
       cartaPC.atributos[atributoSelecionado]
     ) {
       vencedor = "jogador";
-      // htmlResultado = '<p class="resultado-final">Venceu</p>';
     } else if (
       cartaJogador.atributos[atributoSelecionado] <
       cartaPC.atributos[atributoSelecionado]
     ) {
       vencedor = "pc";
-      // htmlResultado = '<p class="resultado-final">Perdeu</p>';
     } else {
       vencedor = "empate";
-      // htmlResultado = '<p class="resultado-final">Empatou</p>';
     }
-  } else {
+  } else if (atributoSelecionado === "livro" || atributoSelecionado === "ano") {
     if (
       cartaJogador.atributos[atributoSelecionado] <
       cartaPC.atributos[atributoSelecionado]
     ) {
       vencedor = "jogador";
-      // htmlResultado = '<p class="resultado-final">Venceu</p>';
     } else if (
       cartaJogador.atributos[atributoSelecionado] >
       cartaPC.atributos[atributoSelecionado]
     ) {
       vencedor = "pc";
-      // htmlResultado = '<p class="resultado-final">Perdeu</p>';
     } else {
       vencedor = "empate";
-      // htmlResultado = '<p class="resultado-final">Empatou</p>';
     }
+  } else {
+    alert(
+      "Atenção! Você precisa selecionar um atributo antes de jogar sua carta."
+    );
+    return;
   }
 
   exibirCartas(atributoSelecionado, vencedor);
-  calculaPontuacao(vencedor);
+  calculaPontuacao();
   exibirPontuacao();
-  // divResultado.innerHTML = htmlResultado;
   telaReset();
 }
 
@@ -845,18 +866,25 @@ function exibirCartas(atributoSelecionado, vencedor) {
 }
 
 function telaReset() {
-  //document.getElementById("opcoes").innerHTML = "";
   document.getElementById("btnNovaRodada").disabled = false;
   document.getElementById("btnJogar").disabled = true;
-  if (pontuacao === 0) {
-    alert(
-      "Você perdeu para o Computador, pois zerou a pontuação! Para começar novamente, clique em Nova rodada."
-    );
+  if (pontuacaoJogador === 0) {
+    document.getElementById("btnNovaRodada").disabled = true;
+    setTimeout(() => {
+      alert(
+        "Que pena, o computador venceu :/\n\nPara começar novamente, clique em Próxima rodada."
+      );
+      document.getElementById("btnNovaRodada").disabled = false;
+    }, 1000);
     fim = true;
-  } else if (pontuacao === pontuacaoMax) {
-    alert(
-      "Você venceu o Computador, pois chegou à pontuação máxima! Para começar novamente, clique em Nova rodada."
-    );
+  } else if (pontuacaoPC === 0) {
+    document.getElementById("btnNovaRodada").disabled = true;
+    setTimeout(() => {
+      alert(
+        "Parabéns! Você venceu o Computador!\n\nPara começar novamente, clique em Próxima rodada."
+      );
+      document.getElementById("btnNovaRodada").disabled = false;
+    }, 1000);
     fim = true;
   }
 }
