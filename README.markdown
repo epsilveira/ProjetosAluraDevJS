@@ -15,3 +15,5 @@ Exibe capas de obras (filmes ou séries) hospedadas no IMDB, utilizando a api de
 Tabela de classificação simples, com inserção de competidores e adição de vitórias, empates e derrotas.
 ## super-trunfo-livros-biblia
 Jogo com a dinâmica do super trunfo com atributos de livros da Bíblia.
+## certificard
+Certificado final da imersao.dev Alura.
