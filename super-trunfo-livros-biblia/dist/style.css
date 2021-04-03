@@ -109,6 +109,21 @@ h2 {
   margin: 10px 10px;
 }
 
+.texto-loading {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: whitesmoke;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-iteration-count: 5;
+  border-radius: 6px;
+  height: fit-content;
+  align-self: center;
+  padding: 6px;
+  margin: -6px;
+}
+
 .pontuacao {
   color: whitesmoke;
 }
