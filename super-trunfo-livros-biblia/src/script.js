@@ -6,6 +6,7 @@ let cartasEmpate = [];
 let imagemPadrao =
   "https://grupoahora.net.br/wp-content/uploads/2020/08/gincana-do-vale.jpg";
 let fim = false;
+let turnoJogador = true;
 
 function construtorCarta(nome, descricao, livro, cap, vers, ano, imagem) {
   return {
@@ -626,6 +627,7 @@ function inicializa() {
   imagemPadrao =
     "https://grupoahora.net.br/wp-content/uploads/2020/08/gincana-do-vale.jpg";
   fim = false;
+  turnoJogador = true;
 
   sortearCartas();
   calculaPontuacao();
@@ -659,7 +661,6 @@ function sortearCartas() {
       );
     }
   }
-  //novaRodada();
 }
 
 function novaRodada() {
@@ -671,7 +672,9 @@ function novaRodada() {
     cartaJogador = cartasJogador.shift();
 
     document.getElementById("btnNovaRodada").disabled = true;
-    document.getElementById("btnJogar").disabled = false;
+    if (turnoJogador) {
+      document.getElementById("btnJogar").disabled = false;
+    }
 
     exibirPontuacao();
     exibirCartaJogador();
@@ -680,6 +683,19 @@ function novaRodada() {
     divCartaPC.style.backgroundImage = `url(${imagemPadrao})`;
     divCartaPC.innerHTML =
       '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style=" width: inherit; height: inherit; position: absolute;">';
+
+    if (turnoJogador) {
+      document.getElementById("texto-loading").innerHTML =
+        '<div id="texto-loading" class="texto-loading">SUA VEZ <</div>';
+    } else if (!turnoJogador) {
+      //se o PC ganha, ele que escolhe
+      //o timeout é para aguardar o sorteio das cartas
+      document.getElementById("texto-loading").innerHTML =
+        '<div id="texto-loading" class="texto-loading">TURNO DO PC ></div>';
+      setTimeout(() => {
+        jogar("pc");
+      }, 2000);
+    }
   }
 }
 
@@ -692,7 +708,7 @@ function exibirCartaJogador(atributoSelecionado = "", status = "") {
   let descricao = `<p class="carta-description">${cartaJogador.descricao}</p>`;
   let opcoesTexto = "";
 
-  if (atributoSelecionado === "") {
+  if (atributoSelecionado === "" && turnoJogador) {
     for (var atributo in cartaJogador.atributos) {
       opcoesTexto +=
         "<input type='radio' name='atributo' value='" +
@@ -791,8 +807,15 @@ function obterAtributoSelecionado() {
   }
 }
 
-function jogar() {
-  const atributoSelecionado = obterAtributoSelecionado();
+function jogar(comp = "jogador") {
+  let atributoSelecionado;
+  if (turnoJogador) {
+    atributoSelecionado = obterAtributoSelecionado();
+  } else {
+    atributoSelecionado = escolhaDoPC();
+    console.log(atributoSelecionado);
+  }
+
   let vencedor;
 
   if (
@@ -804,11 +827,13 @@ function jogar() {
       cartaPC.atributos[atributoSelecionado]
     ) {
       vencedor = "jogador";
+      turnoJogador = true;
     } else if (
       cartaJogador.atributos[atributoSelecionado] <
       cartaPC.atributos[atributoSelecionado]
     ) {
       vencedor = "pc";
+      turnoJogador = false;
     } else {
       vencedor = "empate";
     }
@@ -818,11 +843,13 @@ function jogar() {
       cartaPC.atributos[atributoSelecionado]
     ) {
       vencedor = "jogador";
+      turnoJogador = true;
     } else if (
       cartaJogador.atributos[atributoSelecionado] >
       cartaPC.atributos[atributoSelecionado]
     ) {
       vencedor = "pc";
+      turnoJogador = false;
     } else {
       vencedor = "empate";
     }
@@ -868,6 +895,7 @@ function exibirCartas(atributoSelecionado, vencedor) {
 function telaReset() {
   document.getElementById("btnNovaRodada").disabled = false;
   document.getElementById("btnJogar").disabled = true;
+
   if (pontuacaoJogador === 0) {
     document.getElementById("btnNovaRodada").disabled = true;
     setTimeout(() => {
@@ -891,3 +919,76 @@ function telaReset() {
 
 inicializa();
 novaRodada();
+
+function escolhaDoPC() {
+  return escolhasPC[cartaPC.nome];
+}
+
+const escolhasPC = {
+  Gênesis: "livro",
+  Êxodo: "livro",
+  Levítico: "ano",
+  Números: "versículos",
+  Deuteronômio: "ano",
+  Josué: "ano",
+  Juízes: "ano",
+  Rute: "ano",
+  "1 Samuel": "capítulos",
+  "2 Samuel": "ano",
+  "1 Reis": "versículos",
+  "2 Reis": "capítulos",
+  "1 Crônicas": "versículos",
+  "2 Crônicas": "capítulos",
+  Esdras: "livro",
+  Neemias: "versículos",
+  Ester: "livro",
+  Jó: "ano",
+  Salmos: "versículos",
+  Provérbios: "capítulos",
+  Eclesiastes: "ano",
+  Cantares: "ano",
+  Isaías: "capítulos",
+  Jeremias: "versículos",
+  Lamentações: "ano",
+  Ezequiel: "capítulos",
+  Daniel: "versículos",
+  Oséias: "ano",
+  Joel: "ano",
+  Amós: "ano",
+  Obadias: "ano",
+  Jonas: "ano",
+  Miquéias: "ano",
+  Naum: "ano",
+  Habacuque: "ano",
+  Sofonias: "ano",
+  Ageu: "ano",
+  Zacarias: "capítulos",
+  Malaquias: "ano",
+  Mateus: "livro",
+  Marcos: "livro",
+  Lucas: "livro",
+  João: "livro",
+  Atos: "livro",
+  Romanos: "livro",
+  "1 Coríntios": "livro",
+  "2 Coríntios": "livro",
+  Gálatas: "livro",
+  Efésios: "livro",
+  Filipenses: "livro",
+  Colossenses: "livro",
+  "1 Tessalonicenses": "livro",
+  "2 Tessalonicenses": "livro",
+  "1 Timóteo": "livro",
+  "2 Timóteo": "livro",
+  Tito: "livro",
+  Filemon: "livro",
+  Hebreus: "versículos",
+  Tiago: "livro",
+  "1 Pedro": "livro",
+  "2 Pedro": "livro",
+  "1 João": "livro",
+  "2 João": "livro",
+  "3 João": "livro",
+  Judas: "livro",
+  Apocalipse: "capítulos"
+};
