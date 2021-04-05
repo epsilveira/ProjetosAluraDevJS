@@ -634,12 +634,19 @@ function inicializa() {
 }
 
 function exibirPontuacao() {
-  document.getElementById("pontuacao").innerHTML =
-    "<h3>Suas Cartas " +
-    pontuacaoJogador +
-    " / " +
-    pontuacaoPC +
-    " Cartas Computador</h3>";
+  // Removido para não usar innerHTML
+  // document.getElementById("pontuacao").innerHTML =
+  //   "<h3>Suas Cartas " +
+  //   pontuacaoJogador +
+  //   " / " +
+  //   pontuacaoPC +
+  //   " Cartas Computador</h3>";
+  const h3 = "Suas Cartas " +
+  pontuacaoJogador +
+  " / " +
+  pontuacaoPC +
+  " Cartas Computador"
+  document.querySelector("#pontuacao-h3").textContent = h3;
 }
 
 function calculaPontuacao() {
@@ -679,33 +686,55 @@ function novaRodada() {
     exibirPontuacao();
     exibirCartaJogador();
 
-    divCartaPC = document.getElementById("carta-maquina");
+    // Removido getElementByID para usar querySelector
+    // divCartaPC = document.getElementById("carta-maquina");
+    const divCartaPC = document.querySelector("#carta-maquina");
     divCartaPC.style.backgroundImage = `url(${imagemPadrao})`;
-    divCartaPC.innerHTML =
-      '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style=" width: inherit; height: inherit; position: absolute;">';
+    // Removido o innerHTML
+    // divCartaPC.innerHTML =
+    //   '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style=" width: inherit; height: inherit; position: absolute;">';
+    divCartaPC.firstChild.remove();    
+    divCartaPC.insertAdjacentHTML('afterbegin', '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style=" width: inherit; height: inherit; position: absolute;">');
 
+    const divTextoLoading = document.querySelector("#texto-loading");
+    divTextoLoading.style.animation = 'none';
     if (turnoJogador) {
-      document.getElementById("texto-loading").innerHTML =
-        '<div id="texto-loading" class="texto-loading">SUA VEZ <</div>';
-    } else if (!turnoJogador) {
-      //se o PC ganha, ele que escolhe
-      //o timeout é para aguardar o sorteio das cartas
-      document.getElementById("texto-loading").innerHTML =
-        '<div id="texto-loading" class="texto-loading">TURNO DO PC ></div>';
+      // document.getElementById("texto-loading").innerHTML =
+      //   '<div id="texto-loading" class="texto-loading">SUA VEZ <</div>';
+      divTextoLoading.textContent = "SUA VEZ <";
+
+      //Gambiarra para reiniciar a animação, sem usar o innerHTML
       setTimeout(() => {
-        jogar("pc");
+        divTextoLoading.style.animation = '';
+      }, 10);
+    } else if (!turnoJogador) {
+      //se o PC ganha, ele que escolhe      
+
+      // document.getElementById("texto-loading").innerHTML =
+      //   '<div id="texto-loading" class="texto-loading">TURNO DO PC ></div>';      
+      divTextoLoading.textContent = "TURNO DO PC >"; 
+      
+      //Gambiarra para reiniciar a animação, sem usar o innerHTML
+      setTimeout(() => {
+        divTextoLoading.style.animation = '';
+      }, 10);
+      
+      //o timeout é para aguardar o sorteio das cartas
+      setTimeout(() => {
+        jogar("pc");        
       }, 2000);
     }
   }
 }
 
 function exibirCartaJogador(atributoSelecionado = "", status = "") {
-  let divCartaJogador = document.getElementById("carta-jogador");
-  let moldura =
+  // let divCartaJogador = document.getElementById("carta-jogador");
+  const divCartaJogador = document.querySelector("#carta-jogador");
+  const moldura =
     '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style=" width: inherit; height: inherit; position: absolute;">';
   divCartaJogador.style.backgroundImage = `url(${cartaJogador.imagem})`;
-  let nome = `<p class="carta-subtitle">${cartaJogador.nome}</p>`;
-  let descricao = `<p class="carta-description">${cartaJogador.descricao}</p>`;
+  const nome = `<p class="carta-subtitle">${cartaJogador.nome}</p>`;
+  const descricao = `<p class="carta-description">${cartaJogador.descricao}</p>`;
   let opcoesTexto = "";
 
   if (atributoSelecionado === "" && turnoJogador) {
@@ -751,19 +780,21 @@ function exibirCartaJogador(atributoSelecionado = "", status = "") {
       }
     }
   }
-  let html = '<div id="opcoes" class="carta-status">';
+  const html = '<div id="opcoes" class="carta-status">';
 
+  // Verificar esse innerHTML para alteração
   divCartaJogador.innerHTML =
     moldura + nome + descricao + html + opcoesTexto + "</div>";
 }
 
 function exibirCartaPC(atributoSelecionado = "", status = "") {
-  let divCartaPC = document.getElementById("carta-maquina");
-  let moldura =
+  // let divCartaPC = document.getElementById("carta-maquina");
+  const divCartaPC = document.querySelector("#carta-maquina");
+  const moldura =
     '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style="width: inherit; height: inherit; position: absolute;">';
   divCartaPC.style.backgroundImage = `url(${cartaPC.imagem})`;
-  let nome = `<p class="carta-subtitle">${cartaPC.nome}</p>`;
-  let descricao = `<p class="carta-description">${cartaPC.descricao}</p>`;
+  const nome = `<p class="carta-subtitle">${cartaPC.nome}</p>`;
+  const descricao = `<p class="carta-description">${cartaPC.descricao}</p>`;
   let opcoesTexto = "";
 
   for (var atributo in cartaPC.atributos) {
@@ -792,8 +823,9 @@ function exibirCartaPC(atributoSelecionado = "", status = "") {
     }
   }
 
-  let html = '<div id="opcoes" class="carta-status">';
+  const html = '<div id="opcoes" class="carta-status">';
 
+  // Verificar esse innerHTML para alteração
   divCartaPC.innerHTML =
     moldura + nome + descricao + html + opcoesTexto + "</div>";
 }
@@ -812,8 +844,7 @@ function jogar(comp = "jogador") {
   if (turnoJogador) {
     atributoSelecionado = obterAtributoSelecionado();
   } else {
-    atributoSelecionado = escolhaDoPC();
-    console.log(atributoSelecionado);
+    atributoSelecionado = escolhaDoPC();    
   }
 
   let vencedor;

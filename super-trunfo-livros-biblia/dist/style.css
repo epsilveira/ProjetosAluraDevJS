@@ -114,9 +114,10 @@ h2 {
   text-orientation: upright;
   background-color: rgba(0, 0, 0, 0.2);
   color: whitesmoke;
-  animation-name: blink;
+  /* animation-name: blink;
   animation-duration: 0.5s;
-  animation-iteration-count: 5;
+  animation-iteration-count: 5; */
+  animation: blink 0.5s 5;
   border-radius: 6px;
   height: fit-content;
   align-self: center;
