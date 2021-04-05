@@ -691,10 +691,12 @@ function novaRodada() {
     const divCartaPC = document.querySelector("#carta-maquina");
     divCartaPC.style.backgroundImage = `url(${imagemPadrao})`;
     // Removido o innerHTML
-    // divCartaPC.innerHTML =
-    //   '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style=" width: inherit; height: inherit; position: absolute;">';
-    divCartaPC.firstChild.remove();    
-    divCartaPC.insertAdjacentHTML('afterbegin', '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style=" width: inherit; height: inherit; position: absolute;">');
+    divCartaPC.innerHTML =
+      '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style=" width: inherit; height: inherit; position: absolute;">';
+
+    // Necessário remover mais elementos
+    // divCartaPC.firstChild.remove();    
+    // divCartaPC.insertAdjacentHTML('afterbegin', '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style=" width: inherit; height: inherit; position: absolute;">');
 
     const divTextoLoading = document.querySelector("#texto-loading");
     divTextoLoading.style.animation = 'none';
