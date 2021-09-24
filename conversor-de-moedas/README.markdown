@@ -1,7 +1,5 @@
 # Conversor de moedas
 
-Um simples conversor de dólar para real, e vice-versa.
+A Pen created on CodePen.io. Original URL: [https://codepen.io/epsilveira/pen/LYLjKJb](https://codepen.io/epsilveira/pen/LYLjKJb).
 
-Criado durante a Imersão Alura Dev (JavaScript).
 
-URL do Codepen: [https://codepen.io/epsilveira/pen/rNjBrWy](https://codepen.io/epsilveira/pen/rNjBrWy).

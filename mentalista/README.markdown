@@ -1,7 +1,5 @@
-# Mentalista
+# Mentalista - ID3
 
-Jogo para descobrir número secreto, gerado randomicamente, através de tentativa e erro.
+A Pen created on CodePen.io. Original URL: [https://codepen.io/epsilveira/pen/mdwqybB](https://codepen.io/epsilveira/pen/mdwqybB).
 
-Criado durante a Imersão Alura Dev (JavaScript).
 
-URL do Codepen: [https://codepen.io/epsilveira/pen/ExZjQQJ](https://codepen.io/epsilveira/pen/ExZjQQJ).

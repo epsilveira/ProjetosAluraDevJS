@@ -1,7 +1,5 @@
-# Certificard
+# Certificard v2
 
-Certificado gerado na imersao.dev Alura.
+A Pen created on CodePen.io. Original URL: [https://codepen.io/epsilveira/pen/QWgVPWR](https://codepen.io/epsilveira/pen/QWgVPWR).
 
-Criado durante a Imersão Alura Dev (JavaScript).
 
-URL do Codepen: [https://codepen.io/epsilveira/pen/XWpMorg](https://codepen.io/epsilveira/pen/XWpMorg).

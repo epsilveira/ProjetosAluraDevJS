@@ -21,7 +21,7 @@ body {
 
 .page-subtitle {
   color: #ffffff;
-  margin-top: 16px;
+  margin-top: 5px;
 }
 
 .page-logo {
@@ -39,25 +39,6 @@ body {
   body {
     min-height: 800px;
   }
-}
-
-input {
-  margin: 4px;
-  padding: 6px;
-  border-radius: 5px;
-}
-
-button {
-  margin-top: 12px;
-  padding: 4px 8px;
-  border-radius: 10px;
-  background: #ffffff;
-}
-
-.resultado {
-  color: #ffffff;
-  text-align: center;
-  margin-top: 16px;
 }
 
 .botao-jogar-novamente {
