@@ -1,6 +1,6 @@
 # Conversor de moedas
 
-Um simples conversor de moedas, utilizando a API [https://awesomeapi.com.br](https://awesomeapi.com.br).
+Um simples conversor de dólar para real, e vice-versa.
 
 Criado durante a Imersão Alura Dev (JavaScript).
 

@@ -36,7 +36,7 @@ body {
 
 #listaCapas {
   display: flex;
-  align-items: normal;
+  align-items: center;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -81,9 +81,4 @@ body {
 
 .form-wrapper button:hover {
   opacity: 0.8;
-}
-
-.genero {
-  max-width: 200px;
-  word-wrap: break-word;
 }

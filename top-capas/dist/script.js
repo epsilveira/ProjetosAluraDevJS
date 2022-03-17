@@ -1,40 +1,43 @@
-// function adicionarCapa() {
-//   let campoURLImagem = document.querySelector("#capa");
-//   const urlImagem = campoURLImagem.value;
-//   if (urlImagem.endsWith(".jpg")) {
-//     listarCapasNaTela(urlImagem);
-//   } else {
-//     alert("URL de imagem inválida");
-//   }
-//   campoURLImagem.value = "";
-// }
-
 function adicionarCapa() {
   let campoNome = document.querySelector("#capa");
   const nome = campoNome.value;
-  buscaIMDB(nome.replaceAll(" ", "_"));
+  buscaIMDB(nome.replaceAll(" ", "%20"));
   campoNome.value = "";
 }
 
+function buscaIMDB(nome) {
+  $.getJSON(
+    "https://api.allorigins.win/get?url=https%3A//betterimdbot.herokuapp.com/?tt=" +
+      nome,
+    function (data) {
+      tratamentoIMDB(JSON.parse(data.contents)[1]); // o índice 0 fala sobre a API
+    }
+  );
+}
+
 function tratamentoIMDB(jsonIMDB) {
-  // console.log("Imagem = " + jsonIMDB.d[0].i[0]);
-  // console.log("Nome = " + jsonIMDB.d[0].l);
-  // console.log("Ano = " + jsonIMDB.d[0].y);
-  // console.log("ID = " + jsonIMDB.d[0].id);
-  // console.log("Estrelando = " + jsonIMDB.d[0].s);
-  const urlImagem = jsonIMDB.d[0].i[0];
-  const nomeObra = jsonIMDB.d[0].l;
-  const idObra = jsonIMDB.d[0].id;
-  const ano = jsonIMDB.d[0].y;
+  const urlImagem = jsonIMDB.jsonnnob.image;
+  const nomeObra = jsonIMDB.jsonnnob.name;
+  const urlObra = jsonIMDB.tt_url;
+  const ano = jsonIMDB.year;
+  const notaIMDB = jsonIMDB.jsonnnob.aggregateRating.ratingValue;
+  const genero = jsonIMDB.jsonnnob.genre.join(", ");
 
   if (urlImagem.endsWith(".jpg")) {
-    listarCapasNaTela(urlImagem, nomeObra, idObra, ano);
+    listarCapasNaTela(urlImagem, nomeObra, urlObra, ano, notaIMDB, genero);
   } else {
     alert("URL de imagem inválida");
   }
 }
 
-function listarCapasNaTela(urlImagemCapa, nomeObra, idObra, ano) {
+function listarCapasNaTela(
+  urlImagemCapa,
+  nomeObra,
+  urlObra,
+  ano,
+  notaIMDB,
+  genero
+) {
   const listaCapas = document.querySelector("#listaCapas");
   const elementoCapa =
     '<div id="capa"><a target=_blank alt="' +
@@ -45,49 +48,16 @@ function listarCapasNaTela(urlImagemCapa, nomeObra, idObra, ano) {
     urlImagemCapa +
     '"></a><p><b><a target=_blank alt="' +
     nomeObra +
-    '" href="https://www.imdb.com/title/' +
-    idObra +
+    '" href="' +
+    urlObra +
     '/">' +
     nomeObra +
     "</a></b></p><p>" +
     ano +
+    "</p><p class='genero'>" +
+    genero +
+    "</p><p>Nota: " +
+    notaIMDB +
     "</p></div>";
   listaCapas.innerHTML = listaCapas.innerHTML + elementoCapa;
 }
-
-function buscaIMDB(nome) {
-  const comprimento = 6 + nome.length;
-
-  $.getJSON(
-    "https://api.allorigins.win/get?url=https%3A//sg.media-imdb.com/suggests/" +
-      nome[0].toLowerCase() +
-      "/" +
-      nome +
-      ".json&callback=?",
-    function (data) {
-      const retorno = data.contents.substr(
-        comprimento,
-        data.contents.length - comprimento - 1
-      );
-      tratamentoIMDB(JSON.parse(retorno));
-    }
-  );
-}
-
-// const listaSeries = [
-//   [
-//     "The Office",
-//     "https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_UX182_CR0,0,182,268_AL_.jpg",
-//     "https://www.imdb.com/title/tt0386676/?ref_=nv_sr_srsg_0"
-//   ],
-//   [
-//     "Rick And Morty",
-//     "https://m.media-amazon.com/images/M/MV5BZjRjOTFkOTktZWUzMi00YzMyLThkMmYtMjEwNmQyNzliYTNmXkEyXkFqcGdeQXVyNzQ1ODk3MTQ@._V1_UX182_CR0,0,182,268_AL_.jpg",
-//     "https://www.imdb.com/title/tt2861424/?ref_=nv_sr_srsg_0"
-//   ],
-//   [
-//     "Breaking Bad",
-//     "https://m.media-amazon.com/images/M/MV5BMjhiMzgxZTctNDc1Ni00OTIxLTlhMTYtZTA3ZWFkODRkNmE2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY268_CR5,0,182,268_AL_.jpg",
-//     "https://www.imdb.com/title/tt0903747/?ref_=nv_sr_srsg_0"
-//   ]
-// ];

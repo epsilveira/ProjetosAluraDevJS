@@ -59,3 +59,16 @@ button {
   text-align: center;
   margin-top: 16px;
 }
+
+.botao-jogar-novamente {
+  position: absolute;
+  font-size: 16px;
+  font-weight: bold;
+  top: 170px;
+  left: calc(50% - 62.5px);
+  width: 125px;
+  text-align: center;
+  border-radius: 15px;
+  background-color: rgb(64, 196, 255);
+  color: #ffffff;
+}

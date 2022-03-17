@@ -62,54 +62,7 @@ function exibirJogadoresNaTela(jogadores) {
   tabelaJogadores.innerHTML = html;
 }
 
-function zerarPontos() {
-  for (var i = 0; i < jogadores.length; i++) {
-    jogadores[i].vitorias = 0;
-    jogadores[i].empates = 0;
-    jogadores[i].derrotas = 0;
-  }
-  exibirJogadoresNaTela(jogadores);
-}
-
-function exportarCSV() {
-  let conteudoCSV =
-    "data:text/csv;charset=utf-8,Nome,Vitorias,Empates,Derrotas\r\n";
-  //let conteudoCSV = "";
-
-  jogadores.forEach(function (jogadorObj) {
-    let jogador = `${jogadorObj.nome},${jogadorObj.vitorias},${jogadorObj.empates},${jogadorObj.derrotas}`;
-    conteudoCSV += jogador + "\r\n";
-  });
-  let encodedUri = encodeURI(conteudoCSV);
-  window.open(encodedUri);
-}
-
-function importarCSV(file) {
-  let conteudoCSV = file;
-  jogadores = []; //reseta jogadores
-
-  let linhas = conteudoCSV.split(/\r\n|\n/);
-  linhas.forEach(function (linha) {
-    let colunas = linha.split(",");
-    if (colunas[0] != "Nome" && colunas[1] != "Vitorias" && colunas[0] != "") {
-      jogadores.push(construtorJogador(colunas[0]));
-      for (var i = 0; i < jogadores.length; i++) {
-        jogadores[i].vitorias = parseInt(colunas[1]);
-        console.log(jogadores[i].vitorias);
-        jogadores[i].empates = parseInt(colunas[2]);
-        jogadores[i].derrotas = parseInt(colunas[3]);
-      }
-    }
-  });
-  exibirJogadoresNaTela(jogadores);
-}
-
 let jogadores = [];
 
-document.getElementById("csvText").addEventListener("change", function () {
-  var fr = new FileReader();
-  fr.onload = function () {
-    importarCSV(fr.result);
-  };
-  fr.readAsText(this.files[0]);
-});
+// let jogadores = [construtorJogador("Paulo"), construtorJogador("Rafa")];
+// exibirJogadoresNaTela(jogadores);

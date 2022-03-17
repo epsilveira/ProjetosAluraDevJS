@@ -2,15 +2,12 @@ let brlToUSD = 0;
 let usdToBRL = 0;
 let brlToEUR = 0;
 let eurToBRL = 0;
-let brlToGBP = 0;
-let gbpToBRL = 0;
 let brlToBTC = 0;
 let btcToBRL = 0;
 
 const convert = document.querySelector(".conversor");
 
-const apiURL =
-  "https://economia.awesomeapi.com.br/all/USD-BRL,EUR-BRL,GBP-BRL,BTC-BRL";
+const apiURL = "https://economia.awesomeapi.com.br/all/USD-BRL,EUR-BRL,BTC-BRL";
 const request = new XMLHttpRequest();
 request.open("GET", apiURL, false);
 request.send();
@@ -26,12 +23,8 @@ if (response.status == undefined) {
   eurToBRL = cotacaoEuro;
   brlToEUR = 1 / cotacaoEuro;
 
-  const cotacaoLibra = response.GBP.bid;
-  gbpToBRL = cotacaoLibra;
-  brlToGBP = 1 / cotacaoLibra;
-
-  const cotacaoBTC = parseFloat(response.BTC.bid) * 1000;
-  //const cotacaoBTC = 199122;
+  //const cotacaoBTC = response.BTC.bid;
+  const cotacaoBTC = 242301.79;
   btcToBRL = cotacaoBTC;
   brlToBTC = 1 / cotacaoBTC;
 
@@ -41,8 +34,6 @@ if (response.status == undefined) {
   inputElement.value = parseFloat(brlToUSD).toFixed(2);
   inputElement = document.getElementById("valueEUR");
   inputElement.value = parseFloat(brlToEUR).toFixed(2);
-  inputElement = document.getElementById("valueGBP");
-  inputElement.value = parseFloat(brlToGBP).toFixed(2);
   inputElement = document.getElementById("valueBTC");
   inputElement.value = parseFloat(brlToBTC).toFixed(8);
 } else {
@@ -81,10 +72,6 @@ function listenerInputChange(event) {
       document.getElementById("valueEUR")
     );
     insertValue(
-      convertCoins(brl, brlToGBP).toFixed(2),
-      document.getElementById("valueGBP")
-    );
-    insertValue(
       convertCoins(brl, brlToBTC).toFixed(8),
       document.getElementById("valueBTC")
     );
@@ -96,10 +83,6 @@ function listenerInputChange(event) {
       document.getElementById("valueEUR")
     );
     insertValue(
-      convertCoins(brl, brlToGBP).toFixed(2),
-      document.getElementById("valueGBP")
-    );
-    insertValue(
       convertCoins(brl, brlToBTC).toFixed(8),
       document.getElementById("valueBTC")
     );
@@ -109,25 +92,6 @@ function listenerInputChange(event) {
     insertValue(
       convertCoins(brl, brlToUSD).toFixed(2),
       document.getElementById("valueUSD")
-    );
-    insertValue(
-      convertCoins(brl, brlToGBP).toFixed(2),
-      document.getElementById("valueGBP")
-    );
-    insertValue(
-      convertCoins(brl, brlToBTC).toFixed(8),
-      document.getElementById("valueBTC")
-    );
-  } else if (event.target.name == "valorGBP") {
-    brl = convertBRL(event, gbpToBRL);
-    insertValue(brl, document.getElementById("valueBRL"));
-    insertValue(
-      convertCoins(brl, brlToUSD).toFixed(2),
-      document.getElementById("valueUSD")
-    );
-    insertValue(
-      convertCoins(brl, brlToEUR).toFixed(2),
-      document.getElementById("valueEUR")
     );
     insertValue(
       convertCoins(brl, brlToBTC).toFixed(8),
@@ -143,10 +107,6 @@ function listenerInputChange(event) {
     insertValue(
       convertCoins(brl, brlToEUR).toFixed(2),
       document.getElementById("valueEUR")
-    );
-    insertValue(
-      convertCoins(brl, brlToGBP).toFixed(2),
-      document.getElementById("valueGBP")
     );
   }
 }
